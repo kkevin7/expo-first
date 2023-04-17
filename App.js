@@ -1,29 +1,21 @@
 import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, TextInput, Dimensions } from "react-native";
 
-const Texto = (props) => {
-  const { style } = props;
-
-  const [text, setText] = useState("Hello World!");
-
-  const updateText = (text) => {
-    setText("Chao Mundo!");
-  };
-
-  return (
-    <Text style={[styles.text, style]} onPress={updateText}>
-      {text}
-    </Text>
-  );
-};
+const width = Dimensions.get("window").width;
 
 export default function App() {
+  const [text, setText] = useState("Nice Day :)");
+
   return (
     <View style={styles.container}>
-      <Texto style={styles.red} />
-      <Texto style={styles.green} />
-      <Texto style={styles.blue} />
+      <Text>Texto: {text}</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Enter your text"
+        onChangeText={(t) => setText(t)}
+        defaultValue={text}
+      />
     </View>
   );
 }
@@ -35,22 +27,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  red: {
-    flex: 1,
-    backgroundColor: "red",
-  },
-  green: {
-    flex: 2,
-    backgroundColor: "green",
-  },
-  blue: {
-    flex: 3,
-    backgroundColor: "blue",
-  },
-  text: {
-    color: "white",
-    fontSize: 24,
-    height: 100,
-    width: 100,
+  input: {
+    height: 40,
+    backgroundColor: "#ccc",
+    borderBottomWidth: 1,
+    width: width,
   },
 });
