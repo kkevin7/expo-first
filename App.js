@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
-import { ScrollView, Dimensions, StyleSheet, View, Image } from "react-native";
+import {
+  Dimensions,
+  StyleSheet,
+  View,
+  Text,
+  ImageBackground,
+} from "react-native";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Image style={styles.photo} source={require("./assets/icon.png")} />
-      <Image
+      <ImageBackground
         style={styles.photo2}
         source={{ uri: "http://placekitten.com/200/200" }}
-      />
+      >
+        <Text style={styles.text}>Hello</Text>
+      </ImageBackground>
     </View>
   );
 }
@@ -44,5 +51,10 @@ const styles = StyleSheet.create({
   photo2: {
     height: 200,
     width: 200,
+  },
+  text: {
+    fontSize: 18,
+    textAlign: "center",
+    color: "#fff",
   },
 });
