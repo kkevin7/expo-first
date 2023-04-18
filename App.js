@@ -5,56 +5,56 @@ import {
   StyleSheet,
   View,
   Text,
-  ImageBackground,
+  SafeAreaView,
+  Modal,
+  Button,
 } from "react-native";
 
 export default function App() {
+  const [modal, setModal] = useState(false);
+
   return (
     <View style={styles.container}>
-      <ImageBackground
-        style={styles.photo2}
-        source={{ uri: "http://placekitten.com/200/200" }}
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modal}
+        onRequestClose={() => {}}
       >
-        <Text style={styles.text}>Hello</Text>
-      </ImageBackground>
+        <View style={styles.center}>
+          <View style={styles.content}>
+            <Text>Soy un Modal</Text>
+            <Button title="Cerrar modal" onPress={() => setModal(!modal)} />
+          </View>
+        </View>
+      </Modal>
+      <Text>No soy un modal</Text>
+      <Button title={"Abrir Modal"} onPress={() => setModal(!modal)} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  center: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+  scrollView: {
+    width: Dimensions.get("window").width,
   },
   container: {
     flex: 1,
     backgroundColor: "#fff",
+    alignItems: "stretch",
+    justifyContent: "center",
+  },
+  center: {
+    flex: 1,
+    alignItems: "stretch",
+    justifyContent: "center",
+    backgroundColor: "rgba(0,0,0,0.3)",
+  },
+  content: {
+    backgroundColor: "#eee",
+    flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    paddingTop: 22,
-  },
-  scrollView: {
-    width: Dimensions.get("window").width,
-  },
-  item: {
-    padding: 10,
-    fontSize: 22,
-    height: 50,
-    borderBottomColor: "#ccc",
-    borderBottomWidth: 1,
-  },
-  photo: {
-    height: 60,
-    width: 60,
-  },
-  photo2: {
-    height: 200,
-    width: 200,
-  },
-  text: {
-    fontSize: 18,
-    textAlign: "center",
-    color: "#fff",
+    margin: 25,
   },
 });
